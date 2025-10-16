@@ -1,210 +1,474 @@
 <!DOCTYPE html>
-<html  >
+<html lang="en">
 <head>
-  <!-- Site made with Mobirise Website Builder v6.1.4, https://mobirise.com -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v6.1.4, mobirise.com">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/logo-76x70.png" type="image/x-icon">
-  <meta name="description" content="">
-  
-  
-  <title>2140Education</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=QyXfT3"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=QyXfT3" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2140 Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  
-  
-  
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background: #0a0a0a;
+            color: #fff;
+            cursor: grab;
+        }
+
+        body:active {
+            cursor: grabbing;
+        }
+
+        .horizontal-wrapper {
+            display: flex;
+            width: fit-content;
+            height: 100vh;
+            transition: transform 0.3s ease-out;
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) translate(-25%, -25%); opacity: 0.3; }
+            50% { transform: scale(1.2) translate(-25%, -25%); opacity: 0.6; }
+        }
+
+        .content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.95;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: #a78bfa;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            line-height: 1.7;
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ec4899;
+            font-weight: 600;
+        }
+
+        #section1 {
+            background: linear-gradient(135deg, #1a0b2e 0%, #0a0a0a 100%);
+        }
+
+        #section2 {
+            background: linear-gradient(135deg, #0f172a 0%, #0a0a0a 100%);
+        }
+
+        #section3 {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0a0a0a 100%);
+        }
+
+        #section4 {
+            background: linear-gradient(135deg, #312e81 0%, #0a0a0a 100%);
+        }
+
+        #section5 {
+            background: linear-gradient(135deg, #1e293b 0%, #0a0a0a 100%);
+        }
+
+        #section6 {
+            background: linear-gradient(135deg, #831843 0%, #0a0a0a 100%);
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: #a78bfa;
+            transform: scale(1.3);
+        }
+
+        .scroll-hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-hint::after {
+            content: '→';
+            font-size: 1.5rem;
+        }
+
+        .grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(167, 139, 250, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167, 139, 250, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+        .logo {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 1000;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #a78bfa;
+            letter-spacing: -0.02em;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(167, 139, 250, 0.2);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer a {
+            color: #a78bfa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ec4899;
+        }
+
+        .footer span {
+            opacity: 0.4;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px;
+                padding-bottom: 100px;
+            }
+            .logo, .nav-dots {
+                display: none;
+            }
+            .footer {
+                padding: 15px 20px;
+                font-size: 0.7rem;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  
-  <section data-bs-version="5.1" class="menu menu6 cid-uHEZRPTgF4" once="menu" id="menu06-4">
-	
-
-	<nav class="navbar navbar-dropdown opacityScrollOff navbar-fixed-top navbar-expand-lg">
-		<div class="container">
-			<div class="navbar-brand">
-				<span class="navbar-logo">
-					<a href="index.html">
-						<img src="assets/images/logo-76x70.png" alt="" style="height: 2.4rem;">
-					</a>
-				</span>
-				<span class="navbar-caption-wrap"><a class="navbar-caption text-primary display-4" href="https://mobiri.se">2140 Education Pty Ltd </a></span>
-			</div>
-			
-			
-		</div>
-	</nav>
-</section>
-
-<section data-bs-version="5.1" class="header2 directm4_header2 cid-uHEZbMuMQp mbr-fullscreen mbr-parallax-background" id="header2-1">
-
-	
+    <div class="logo">2140</div>
     
-
-
-	<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 0, 0);"></div>
-
-	<div class="align-center container">
-		<div class="row">
-			<div class="col-12 col-lg-10">
-				<h1 class="mbr-section-title mbr-fonts-style mbr-white display-1"><strong>2140 Education</strong></h1>
-				<h2 class="mbr-section-subtitle mbr-fonts-style mb-3 mbr-white display-2">Empowering Learning. Enabling Lives.</h2>
-				<p class="mbr-text mbr-fonts-style mbr-white display-7">At 2140 Education, we reimagine learning and support through inclusive, trauma-informed, and neurodiverse-affirming pathways that honour each individual’s strengths and goals. From homeschooling and NDIS services to mentoring, life skills, therapy, and financial literacy, we empower people of all abilities to grow with purpose, autonomy, and connection.</p>
-				<div class="buttons-wrap align-center align-self-center">
-					<div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="index.html#features022-9">About</a> <a class="btn btn-md btn-primary display-4" href="mailto:2140accounts@proton.me">Contact</a></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-</section>
-
-<section data-bs-version="5.1" class="features22 cid-uVvhYAdiQY" id="features022-9">
-  
-
-  
-  
-  <div class="container">
+    <div class="nav-dots" id="navDots"></div>
     
-    <!-- About Section -->
-    <div class="row mb-5 justify-content-start">
-      <div class="col-12 col-md-10 content-head text-start">
-        <h3 class="mbr-section-title mbr-fonts-style mb-0 display-2">
-          <strong>About 2140</strong>
-        </h3>
-        <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-4 text-start display-7">
-          At 2140 Education, we are reimagining learning and support for the future through inclusive, adaptive, and empowering approaches that recognise each individual’s strengths, goals, and potential. We work across homeschooling and NDIS service delivery to provide tailored, trauma-informed, and neurodiverse-affirming pathways in genuine partnership with families and support networks. Our services span academic mentoring, curriculum design, life skills coaching, educational therapy, and community engagement, while our financial literacy programs strengthen independence and long-term capability. Guided by a vision for 2140 and beyond, we believe every person whether gifted, living with complex needs, or seeking alternatives to mainstream education deserves purpose, autonomy, and connection.
-        </h5>
-      </div>
+    <div class="scroll-hint">Scroll or drag</div>
+
+    <div class="footer">
+        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener">GNU General Public License v3.0</a>
+        <span>•</span>
+        <span>ABN 67 684 858 857</span>
+        <span>•</span>
+        <span>ACN: 684 858 857</span>
     </div>
-    <!-- End About Section -->
 
-    <div class="row mbr-masonry" data-masonry="{&quot;percentPosition&quot;: true }">
-      <!-- Feature Items -->
-      <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-        <div class="item-wrapper">
-          <div class="card-box align-left">
-            <div class="iconfont-wrapper">
-              <span class="mbr-iconfont fa-globe fa"></span>
+    <div class="horizontal-wrapper" id="wrapper">
+        <div class="section" id="section1">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h1>2140<br>Education</h1>
+                <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: #fff; margin-top: 20px;">
+                    Reimagining learning and support through <span class="highlight">inclusive</span>, <span class="highlight">trauma-informed</span>, and <span class="highlight">neurodiverse-affirming</span> pathways that honour each individual's strengths and goals.
+                </p>
             </div>
-            <h5 class="card-title mbr-fonts-style display-5"><strong>Inclusive Mission</strong></h5>
-            <p class="card-text mbr-fonts-style display-7">
-              At 2140 Education Pty Ltd, our mission is to provide inclusive, individualised, and empowering education and support services that enrich the lives of learners and individuals living with disability. We believe everyone regardless of background, ability, or circumstance deserves access to quality education and holistic care.
-            </p>
-          </div>
         </div>
-      </div>
 
-      <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-        <div class="item-wrapper">
-          <div class="card-box align-left">
-            <div class="iconfont-wrapper">
-              <span class="mbr-iconfont imind-idea-2"></span>
+        <div class="section" id="section2">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h2>Our Mission</h2>
+                <p>
+                    At 2140 Education Pty Ltd, our mission is to provide inclusive, individualised, and empowering education and support services that enrich the lives of learners and individuals living with disability.
+                </p>
+                <p>
+                    We believe everyone—regardless of background, ability, or circumstance—deserves access to quality education and holistic care.
+                </p>
             </div>
-            <h5 class="card-title mbr-fonts-style display-5"><strong>Homeschooling Innovation</strong></h5>
-            <p class="card-text mbr-fonts-style display-7">
-              We specialise in supporting families who choose education outside of mainstream systems. Through academic mentoring, curriculum customisation, and capability-building for parents and carers, our homeschooling services offer flexible, learner-centred pathways that put each student’s strengths and needs at the centre.
-            </p>
-          </div>
         </div>
-      </div>
 
-      <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-        <div class="item-wrapper">
-          <div class="card-box align-left">
-            <div class="iconfont-wrapper">
-              <span class="mbr-iconfont icon54-v4-handshake"></span>
+        <div class="section" id="section3">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h2>Homeschooling Services</h2>
+                <p>
+                    We specialise in supporting families who choose education outside of mainstream systems. Through academic mentoring, curriculum customisation, and capability-building for parents and carers, our homeschooling services offer flexible, learner-centred pathways.
+                </p>
+                <p class="highlight" style="font-size: 1.4rem; margin-top: 30px;">
+                    We put each student's strengths and needs at the centre.
+                </p>
             </div>
-            <h5 class="card-title mbr-fonts-style display-5"><strong>NDIS-Aligned Supports</strong></h5>
-            <p class="card-text mbr-fonts-style display-7">
-              As an NDIS provider, we deliver programs designed to align with participants’ goals while building long-term independence. From capacity-building and life skills coaching to educational therapy and community participation, we help individuals not only meet their NDIS objectives but thrive beyond them.
-            </p>
-          </div>
         </div>
-      </div>
 
-      <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-        <div class="item-wrapper">
-          <div class="card-box align-left">
-            <div class="iconfont-wrapper">
-              <span class="mbr-iconfont icon54-v3-lego-toy"></span>
+        <div class="section" id="section4">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h2>NDIS Support</h2>
+                <p>
+                    As an NDIS provider, we deliver programs designed to align with participants' goals while building long-term independence.
+                </p>
+                <p>
+                    From capacity-building and life skills coaching to educational therapy and community participation, we help individuals not only meet their NDIS objectives but <span class="highlight">thrive beyond them</span>.
+                </p>
             </div>
-            <h5 class="card-title mbr-fonts-style display-5"><strong>Future Vision</strong></h5>
-            <p class="card-text mbr-fonts-style display-7">
-              We exist because standardised systems leave too many behind. At 2140 Education, we create space for the possible designing education and support that adapts to the individual, rather than forcing individuals to adapt to the system.<br><br>
-            </p>
-          </div>
         </div>
-      </div>
 
-      <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-        <div class="item-wrapper">
-          <div class="card-box align-left">
-            <div class="iconfont-wrapper">
-              <span class="mbr-iconfont fa-puzzle-piece fa"></span>
+        <div class="section" id="section5">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h2>Why We Exist</h2>
+                <p style="font-size: 1.5rem; color: #fff;">
+                    Standardised systems leave too many behind.
+                </p>
+                <p>
+                    At 2140 Education, we create space for the possible—designing education and support that adapts to the individual, rather than forcing individuals to adapt to the system.
+                </p>
+                <p>
+                    Our work is guided by trauma-informed practice and a neurodiverse-affirming philosophy. By partnering with families, caregivers, and support networks, we ensure that learning and care environments are safe, adaptable, and grounded in respect for each person's lived experience.
+                </p>
             </div>
-            <h5 class="card-title mbr-fonts-style display-5"><strong>Affirming Approach</strong></h5>
-            <p class="card-text mbr-fonts-style display-7">
-              Our work is guided by trauma-informed practice and a neurodiverse-affirming philosophy. By partnering with families, caregivers, and support networks, we ensure that learning and care environments are safe, adaptable, and grounded in respect for each person’s lived experience.
-            </p>
-          </div>
         </div>
-      </div>
 
-      <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-        <div class="item-wrapper">
-          <div class="card-box align-left">
-            <div class="iconfont-wrapper">
-              <span class="mbr-iconfont imind-astronaut"></span>
-            </div>
-            <h5 class="card-title mbr-fonts-style display-5"><strong>Beyond the System</strong></h5>
-            <p class="card-text mbr-fonts-style display-7">
-              The name 2140 reflects our long-term vision: a future where all individuals gifted learners, those with additional needs, and people with complex requirements are supported to live purposeful, connected lives. We are committed to creating environments that foster belonging, agency, and growth.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- End Feature Items -->
-    </div>
-  </div>
-</section>
-
-<section data-bs-version="5.1" class="footer2 cid-uVvsfV922l" once="footers" id="footer02-b">
-    
-
-    
-    
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-6 center mt-2 mb-3">
-                <p class="mbr-fonts-style copyright mb-0 display-7">
-                    <a href="https://github.com/2140education/2140education.github.io/blob/main/LICENSE" class="text-primary" target="_blank">© GNU General Public License v3.0</a><br></p>
-            </div>
-            <div class="col-12 col-lg-6 center">
-                <div class="row-links mt-2 mb-3">
-                    <ul class="row-links-soc">
-                        
-                        
-                        
-                        
-                    <li class="row-links-soc-item mbr-fonts-style display-7"><a href="https://abr.business.gov.au/ABN/View?abn=67684858857" class="text-primary" target="_blank">ABN 67 684 858 857</a></li><li class="row-links-soc-item mbr-fonts-style display-7"><a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?searchType=OrgAndBusNm&searchText=684858857" class="text-primary" target="_blank">&nbsp;ACN: 684 858 857</a></li><li class="row-links-soc-item mbr-fonts-style display-7"></li><li class="row-links-soc-item mbr-fonts-style display-7"></li></ul>
-                </div>
+        <div class="section" id="section6">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h2>The Vision: 2140</h2>
+                <p>
+                    The name <span class="highlight">2140</span> reflects our long-term vision: a future where all individuals—gifted learners, those with additional needs, and people with complex requirements—are supported to live purposeful, connected lives.
+                </p>
+                <p style="font-size: 1.4rem; color: #fff; margin-top: 30px;">
+                    We are committed to creating environments that foster belonging, agency, and growth.
+                </p>
             </div>
         </div>
     </div>
-</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/4269061" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/offline-website-builder.html">Offline Website Builder</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/masonry/masonry.pkgd.min.js"></script>  <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>  <script src="assets/theme/js/script.js"></script>  
-  
-  
+
+    <script>
+        const wrapper = document.getElementById('wrapper');
+        const sections = document.querySelectorAll('.section');
+        const navDots = document.getElementById('navDots');
+        let currentSection = 0;
+        let isScrolling = false;
+        let startX = 0;
+        let scrollLeft = 0;
+        let isDragging = false;
+
+        // Create navigation dots
+        sections.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (index === 0 ? ' active' : '');
+            dot.addEventListener('click', () => scrollToSection(index));
+            navDots.appendChild(dot);
+        });
+
+        function scrollToSection(index) {
+            if (index < 0 || index >= sections.length) return;
+            currentSection = index;
+            wrapper.style.transform = `translateX(-${currentSection * 100}vw)`;
+            updateDots();
+        }
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSection);
+            });
+        }
+
+        // Wheel scroll
+        window.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+            
+            if (e.deltaY > 0 || e.deltaX > 0) {
+                // Scroll right
+                if (currentSection < sections.length - 1) {
+                    isScrolling = true;
+                    currentSection++;
+                    scrollToSection(currentSection);
+                    setTimeout(() => isScrolling = false, 800);
+                }
+            } else {
+                // Scroll left
+                if (currentSection > 0) {
+                    isScrolling = true;
+                    currentSection--;
+                    scrollToSection(currentSection);
+                    setTimeout(() => isScrolling = false, 800);
+                }
+            }
+        }, { passive: true });
+
+        // Touch/mouse drag
+        wrapper.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            scrollLeft = currentSection * window.innerWidth;
+        });
+
+        wrapper.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            scrollLeft = currentSection * window.innerWidth;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX;
+            const walk = (startX - x) * 2;
+            const newScroll = scrollLeft + walk;
+            const newSection = Math.round(newScroll / window.innerWidth);
+            if (newSection !== currentSection && newSection >= 0 && newSection < sections.length) {
+                currentSection = newSection;
+                updateDots();
+            }
+            wrapper.style.transform = `translateX(-${newScroll}px)`;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX;
+            const walk = (startX - x) * 2;
+            const newScroll = scrollLeft + walk;
+            const newSection = Math.round(newScroll / window.innerWidth);
+            if (newSection !== currentSection && newSection >= 0 && newSection < sections.length) {
+                currentSection = newSection;
+                updateDots();
+            }
+            wrapper.style.transform = `translateX(-${newScroll}px)`;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                scrollToSection(currentSection);
+            }
+        });
+
+        window.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                scrollToSection(currentSection);
+            }
+        });
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSection < sections.length - 1) {
+                currentSection++;
+                scrollToSection(currentSection);
+            } else if (e.key === 'ArrowLeft' && currentSection > 0) {
+                currentSection--;
+                scrollToSection(currentSection);
+            }
+        });
+
+        // Hide scroll hint after first interaction
+        let hintHidden = false;
+        function hideHint() {
+            if (!hintHidden) {
+                document.querySelector('.scroll-hint').style.opacity = '0';
+                hintHidden = true;
+            }
+        }
+        window.addEventListener('wheel', hideHint, { once: true });
+        window.addEventListener('mousedown', hideHint, { once: true });
+        window.addEventListener('touchstart', hideHint, { once: true });
+    </script>
 </body>
 </html>
