@@ -43,6 +43,15 @@
             overflow: hidden;
         }
 
+        #section6 {
+            overflow-y: auto;
+            padding: 120px 80px 150px 80px;
+        }
+
+        #section6 .content {
+            max-height: none;
+        }
+
         .section::before {
             content: '';
             position: absolute;
@@ -117,11 +126,16 @@
         }
 
         #section6 {
-            background: linear-gradient(135deg, #831843 0%, #0a0a0a 100%);
+            background: linear-gradient(135deg, #0c4a6e 0%, #0a0a0a 100%);
         }
 
-        #section7 {
-            background: linear-gradient(135deg, #0c4a6e 0%, #0a0a0a 100%);
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            line-height: 1.5;
+            margin-top: 30px;
+            max-width: 800px;
         }
 
         .contact-form {
@@ -276,6 +290,49 @@
             transform: scale(1.05);
         }
 
+        .header-nav {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 1000;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #a78bfa, #ec4899);
+            transition: width 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #fff;
+        }
+
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-nav a.active {
+            color: #a78bfa;
+        }
+
         .footer {
             position: fixed;
             bottom: 0;
@@ -335,6 +392,10 @@
                 left: 20px;
             }
 
+            .header-nav {
+                display: none;
+            }
+
             .nav-dots, .scroll-hint {
                 display: none;
             }
@@ -360,6 +421,10 @@
                 font-size: 1rem;
             }
 
+            #section6 {
+                padding: 80px 30px 140px 30px;
+            }
+
             .contact-form {
                 max-width: 100%;
             }
@@ -370,6 +435,15 @@
     <div class="logo">
         <img src="https://github.com/2140education/2140education.github.io/blob/main/Logo.png?raw=true" alt="2140 Education Logo">
     </div>
+    
+    <nav class="header-nav">
+        <a href="#" data-section="0">Home</a>
+        <a href="#" data-section="1">Mission & Vision</a>
+        <a href="#" data-section="2">Homeschooling</a>
+        <a href="#" data-section="3">NDIS</a>
+        <a href="#" data-section="4">Why Us</a>
+        <a href="#" data-section="5">Contact</a>
+    </nav>
     
     <div class="nav-dots" id="navDots"></div>
     
@@ -388,8 +462,8 @@
             <div class="grid-bg"></div>
             <div class="content">
                 <h1>2140<br>Education</h1>
-                <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: #fff; margin-top: 20px;">
-                    Reimagining learning and support through <span class="highlight">inclusive</span>, <span class="highlight">trauma-informed</span>, and <span class="highlight">neurodiverse-affirming</span> pathways that honour each individual's strengths and goals.
+                <p class="tagline">
+                    Building the future of learning. One individual at a time.
                 </p>
             </div>
         </div>
@@ -397,12 +471,18 @@
         <div class="section" id="section2">
             <div class="grid-bg"></div>
             <div class="content">
-                <h2>Our Mission</h2>
+                <h2>Mission & Vision</h2>
                 <p>
-                    At 2140 Education Pty Ltd, our mission is to provide inclusive, individualised, and empowering education and support services that enrich the lives of learners and individuals living with disability.
+                    At 2140 Education Pty Ltd, our mission is to provide <span class="highlight">inclusive, individualised, and empowering</span> education and support services that enrich the lives of learners and individuals living with disability.
                 </p>
                 <p>
-                    We believe everyone—regardless of background, ability, or circumstance—deserves access to quality education and holistic care.
+                    We believe everyone, regardless of background, ability, or circumstance, deserves access to quality education and holistic care.
+                </p>
+                <p style="margin-top: 30px;">
+                    The name <span class="highlight">2140</span> reflects our long-term vision: a future where all individuals, gifted learners, those with additional needs, and people with complex requirements, are supported to live purposeful, connected lives.
+                </p>
+                <p>
+                    We reimagine learning and support through <span class="highlight">inclusive, trauma-informed, and neurodiverse-affirming</span> pathways that honour each individual's strengths and goals. From homeschooling and NDIS services to mentoring, life skills, therapy, and financial literacy, we empower people of all abilities to grow with purpose, autonomy, and connection.
                 </p>
             </div>
         </div>
@@ -446,23 +526,13 @@
                 <p>
                     Our work is guided by trauma-informed practice and a neurodiverse-affirming philosophy. By partnering with families, caregivers, and support networks, we ensure that learning and care environments are safe, adaptable, and grounded in respect for each person's lived experience.
                 </p>
-            </div>
-        </div>
-
-        <div class="section" id="section6">
-            <div class="grid-bg"></div>
-            <div class="content">
-                <h2>The Vision: 2140</h2>
-                <p>
-                    The name <span class="highlight">2140</span> reflects our long-term vision: a future where all individuals—gifted learners, those with additional needs, and people with complex requirements—are supported to live purposeful, connected lives.
-                </p>
                 <p style="font-size: 1.4rem; color: #fff; margin-top: 30px;">
                     We are committed to creating environments that foster belonging, agency, and growth.
                 </p>
             </div>
         </div>
 
-        <div class="section" id="section7">
+        <div class="section" id="section6">
             <div class="grid-bg"></div>
             <div class="content">
                 <h2>Get in Touch</h2>
@@ -535,7 +605,20 @@
             document.querySelectorAll('.dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSection);
             });
+            // Update header nav links
+            document.querySelectorAll('.header-nav a').forEach((link, index) => {
+                link.classList.toggle('active', index === currentSection);
+            });
         }
+
+        // Header navigation clicks
+        document.querySelectorAll('.header-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = parseInt(link.getAttribute('data-section'));
+                scrollToSection(section);
+            });
+        });
 
         // Wheel scroll (desktop only)
         window.addEventListener('wheel', (e) => {
