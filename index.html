@@ -5,641 +5,357 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2140 Education</title>
     <link rel="icon" type="image/png" href="https://github.com/2140education/2140education.github.io/blob/main/Logo.png?raw=true">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #4b5563;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border: #e5e7eb;
+            --section-bg: #f9fafb;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #f8fafc;
+                --text-muted: #94a3b8;
+                --primary: #3b82f6;
+                --primary-hover: #60a5fa;
+                --border: #1e293b;
+                --section-bg: #0b1120;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            .booking-frame {
-                min-height: 500px;
-            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            background: #0a0a0a;
-            color: #fff;
-            cursor: grab;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        body:active {
-            cursor: grabbing;
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(var(--bg-color), 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+            color: var(--text-color);
         }
 
-        .horizontal-wrapper {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            width: fit-content;
-            height: 100vh;
-            transition: transform 0.3s ease-out;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
         }
 
-        .section {
-            width: 100vw;
-            height: 100vh;
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.25rem;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #home {
+            padding-top: 120px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #section6 {
-            overflow: hidden;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #section6 .content {
-            max-height: none;
-            max-width: none;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-        }
-
-        #section6 h2 {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            margin-bottom: 0;
-            padding: 40px 60px 20px 60px;
             text-align: center;
         }
 
-        #section6 p {
-            font-size: 1rem;
-            margin-bottom: 0;
-            padding: 0 60px 30px 60px;
-            text-align: center;
-        }
-
-        #section7 {
-            overflow: hidden;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #section7 .content {
-            max-height: none;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 80px;
-        }
-
-        #section7 h2 {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        #section7 p {
-            font-size: 1rem;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1) translate(-25%, -25%); opacity: 0.3; }
-            50% { transform: scale(1.2) translate(-25%, -25%); opacity: 0.6; }
-        }
-
-        .content {
-            max-width: 900px;
-            z-index: 2;
-            position: relative;
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
         }
 
         h1 {
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(3rem, 6vw, 5rem);
             font-weight: 800;
-            line-height: 0.95;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.03em;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 25px;
-            color: #a78bfa;
+            margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
         }
 
+        .tagline {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        /* General Sections */
+        section {
+            padding: 6rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--section-bg);
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+            color: var(--text-color);
+        }
+
         p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            line-height: 1.7;
-            color: #d1d5db;
-            margin-bottom: 20px;
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
         }
 
         .highlight {
-            color: #fff;
-            font-weight: 700;
-        }
-
-        #section1 {
-            background: linear-gradient(135deg, #1a0b2e 0%, #0a0a0a 100%);
-        }
-
-        #section2 {
-            background: linear-gradient(135deg, #0f172a 0%, #0a0a0a 100%);
-        }
-
-        #section3 {
-            background: linear-gradient(135deg, #1e1b4b 0%, #0a0a0a 100%);
-        }
-
-        #section4 {
-            background: linear-gradient(135deg, #312e81 0%, #0a0a0a 100%);
-        }
-
-        #section5 {
-            background: linear-gradient(135deg, #1e293b 0%, #0a0a0a 100%);
-        }
-
-        #section6 {
-            background: linear-gradient(135deg, #0c4a6e 0%, #0a0a0a 100%);
-        }
-
-        #section7 {
-            background: linear-gradient(135deg, #831843 0%, #0a0a0a 100%);
-        }
-
-        .booking-container {
-            width: 100%;
-            flex: 1;
-            position: relative;
-            padding: 0 40px 40px 40px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .booking-frame-wrapper {
-            position: relative;
-            background: rgba(167, 139, 250, 0.05);
-            border: 2px solid rgba(167, 139, 250, 0.2);
-            border-radius: 20px;
-            padding: 0;
-            box-shadow: 0 30px 80px rgba(167, 139, 250, 0.3);
-            backdrop-filter: blur(20px);
-            flex: 1;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .booking-frame-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(135deg, #a78bfa, #ec4899, #a78bfa);
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0.6;
-            filter: blur(15px);
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.9; }
-        }
-
-        .booking-frame {
-            width: 100%;
-            height: 100%;
-            flex: 1;
-            border: none;
-            border-radius: 18px;
-            background: #fff;
-        }
-
-        .booking-fallback {
-            padding: 15px;
-            text-align: center;
-            background: rgba(10, 10, 10, 0.5);
-            border-top: 1px solid rgba(167, 139, 250, 0.2);
-        }
-
-        .booking-fallback p {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
-            padding: 0;
-            margin: 0;
-        }
-
-        .booking-fallback a {
-            color: #a78bfa;
-            text-decoration: none;
+            color: var(--primary);
             font-weight: 600;
-            transition: color 0.3s ease;
         }
 
-        .booking-fallback a:hover {
-            color: #ec4899;
+        .lead {
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--text-color);
         }
 
-        .tagline {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 400;
-            line-height: 1.5;
-            margin-top: 30px;
-            max-width: 800px;
-        }
-
-        .contact-form {
-            width: 100%;
-            max-width: 550px;
-            margin-top: 0;
+        /* Contact Form */
+        .contact-wrapper {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
         }
 
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
-            color: #a78bfa;
-            font-weight: 600;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 11px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(167, 139, 250, 0.3);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 0.9rem;
+            padding: 0.875rem 1rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: 1rem;
             font-family: inherit;
-            transition: all 0.3s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #a78bfa;
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 70px;
+            min-height: 150px;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
-            color: #fff;
+            background: var(--primary);
+            color: #ffffff;
             border: none;
-            padding: 11px 30px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border-radius: 8px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
             width: 100%;
-            margin-top: 5px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+            background: var(--primary-hover);
         }
 
         .submit-btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
 
-        .nav-dots {
-            position: fixed;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.875rem;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot:hover {
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(1.2);
-        }
-
-        .dot.active {
-            background: #a78bfa;
-            transform: scale(1.3);
-        }
-
-        .scroll-hint {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        .scroll-hint::after {
-            content: '→';
-            font-size: 1.5rem;
-        }
-
-        .grid-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(167, 139, 250, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(167, 139, 250, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 1;
-        }
-
-        .logo {
-            position: fixed;
-            top: 40px;
-            left: 40px;
-            z-index: 1000;
-            width: 80px;
-            height: 80px;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 12px rgba(167, 139, 250, 0.4));
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .header-nav {
-            position: fixed;
-            top: 40px;
-            right: 40px;
-            z-index: 1000;
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .header-nav a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .header-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #a78bfa, #ec4899);
-            transition: width 0.3s ease;
-        }
-
-        .header-nav a:hover {
-            color: #fff;
-        }
-
-        .header-nav a:hover::after {
-            width: 100%;
-        }
-
-        .header-nav a.active {
-            color: #a78bfa;
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 40px;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(167, 139, 250, 0.2);
-            z-index: 999;
-            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            gap: 20px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
+            gap: 1rem;
         }
 
-        .footer a {
-            color: #a78bfa;
+        footer a {
+            color: var(--primary);
             text-decoration: none;
-            transition: color 0.3s ease;
         }
 
-        .footer a:hover {
-            color: #ec4899;
+        footer a:hover {
+            text-decoration: underline;
         }
-
-        .footer span {
+        
+        .footer-sep {
             opacity: 0.4;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                overflow-x: hidden;
-            }
-
-            .horizontal-wrapper {
+            .nav-links {
+                display: none;
                 flex-direction: column;
-                width: 100vw !important;
-                height: auto !important;
-                transform: none !important;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-color);
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1rem;
             }
 
-            .section {
-                width: 100vw !important;
-                height: auto !important;
-                min-height: 100vh;
-                padding: 60px 30px 120px 30px;
+            .nav-links.active {
+                display: flex;
             }
 
-            .logo {
-                width: 60px;
-                height: 60px;
-                top: 20px;
-                left: 20px;
+            .menu-toggle {
+                display: block;
             }
 
-            .header-nav {
-                display: none;
+            section {
+                padding: 4rem 1.5rem;
             }
 
-            .nav-dots, .scroll-hint {
-                display: none;
+            .contact-wrapper {
+                padding: 1.5rem;
             }
-
-            .footer {
-                position: fixed;
-                padding: 15px 20px;
-                font-size: 0.7rem;
-                flex-wrap: wrap;
-                gap: 10px;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 3rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            #section6 {
-                padding: 0;
-                overflow-y: auto;
-            }
-
-            #section6 h2 {
-                font-size: 1.8rem;
-                padding: 30px 20px 15px 20px;
-            }
-
-            #section6 p {
-                font-size: 0.95rem;
-                padding: 0 20px 20px 20px;
-            }
-
-            .booking-container {
-                padding: 0 20px 20px 20px;
-            }
-
-            .booking-frame {
-                min-height: 500px;
-            }
-
-            #section7 {
-                padding: 60px 30px 80px 30px;
-            }
-
-            .booking-frame {
-                height: 600px;
-            }
-
-            .booking-frame-wrapper {
-                padding: 15px;
-            }
-
-            .contact-form {
-                max-width: 100%;
+            
+            #home {
+                padding-top: 80px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="logo">
-        <img src="https://github.com/2140education/2140education.github.io/blob/main/Logo.png?raw=true" alt="2140 Education Logo">
-    </div>
-    
-    <nav class="header-nav">
-        <a href="#" data-section="0">Home</a>
-        <a href="#" data-section="1">Mission & Vision</a>
-        <a href="#" data-section="2">Tutoring</a>
-        <a href="#" data-section="3">NDIS</a>
-        <a href="#" data-section="4">Why Us</a>
-        <a href="#" data-section="5">Book</a>
-        <a href="#" data-section="6">Contact</a>
-    </nav>
-    
-    <div class="nav-dots" id="navDots"></div>
-    
-    <div class="scroll-hint">Scroll or drag</div>
 
-    <div class="footer">
-        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener">GNU General Public License v3.0</a>
-        <span>•</span>
-        <span>ABN 67 684 858 857</span>
-        <span>•</span>
-        <span>ACN: 684 858 857</span>
-    </div>
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="https://github.com/2140education/2140education.github.io/blob/main/Logo.png?raw=true" alt="2140 Education Logo">
+                2140 Education
+            </a>
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <nav class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#mission" class="nav-link">Mission & Vision</a>
+                <a href="#homeschooling" class="nav-link">Homeschooling</a>
+                <a href="#ndis" class="nav-link">NDIS</a>
+                <a href="#why-us" class="nav-link">Why Us</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="horizontal-wrapper" id="wrapper">
-        <div class="section" id="section1">
-            <div class="grid-bg"></div>
-            <div class="content">
-                <h1>2140<br>Education</h1>
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <h1 style="color: var(--text-color)">2140 Education</h1>
                 <p class="tagline">
                     Building the future of learning. One individual at a time.
                 </p>
+                <a href="#mission" style="display:inline-block; margin-top: 2rem; color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--text-color)'" onmouseout="this.style.color='var(--text-muted)'">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                </a>
             </div>
-        </div>
+        </section>
 
-        <div class="section" id="section2">
-            <div class="grid-bg"></div>
-            <div class="content">
+        <section id="mission">
+            <div class="container">
                 <h2>Mission & Vision</h2>
                 <p>
                     At 2140 Education Pty Ltd, our mission is to provide <span class="highlight">inclusive, individualised, and empowering</span> education and support services that enrich the lives of learners and individuals living with disability.
@@ -647,49 +363,43 @@
                 <p>
                     We believe everyone, regardless of background, ability, or circumstance, deserves access to quality education and holistic care.
                 </p>
-                <p style="margin-top: 30px;">
+                <p style="margin-top: 2rem;">
                     The name <span class="highlight">2140</span> reflects our long-term vision: a future where all individuals, gifted learners, those with additional needs, and people with complex requirements, are supported to live purposeful, connected lives.
                 </p>
                 <p>
-                    We reimagine learning and support through <strong style="color: #fff; font-weight: 700;">inclusive, trauma-informed, and neurodiverse-affirming</strong> pathways that honour each individual's strengths and goals. From tutoring and NDIS services to mentoring, life skills, therapy, and financial literacy, we empower people of all abilities to grow with purpose, autonomy, and connection.
+                    We reimagine learning and support through <span class="highlight">inclusive, trauma-informed, and neurodiverse-affirming</span> pathways that honour each individual's strengths and goals. From homeschooling and NDIS services to mentoring, life skills, therapy, and financial literacy, we empower people of all abilities to grow with purpose, autonomy, and connection.
                 </p>
             </div>
-        </div>
+        </section>
 
-        <div class="section" id="section3">
-            <div class="grid-bg"></div>
-            <div class="content">
-                <h2>Tutoring Services</h2>
+        <section id="homeschooling">
+            <div class="container">
+                <h2>Homeschooling Services</h2>
                 <p>
-                    We specialise in supporting families who choose education outside of mainstream systems. Through academic mentoring, curriculum customisation, and capability-building for parents and carers, our tutoring services offer flexible, learner-centred pathways.
+                    We specialise in supporting families who choose education outside of mainstream systems. Through academic mentoring, curriculum customisation, and capability-building for parents and carers, our homeschooling services offer flexible, learner-centred pathways.
                 </p>
-                <p style="font-size: 1.4rem; margin-top: 30px; font-weight: 700; color: #fff;">
+                <p class="highlight lead" style="margin-top: 2rem;">
                     We put each student's strengths and needs at the centre.
                 </p>
             </div>
-        </div>
+        </section>
 
-        <div class="section" id="section4">
-            <div class="grid-bg"></div>
-            <div class="content">
+        <section id="ndis">
+            <div class="container">
                 <h2>NDIS Support</h2>
-                <p style="margin-bottom: 25px;">
-                    The <a href="https://www.ndis.gov.au/" target="_blank" rel="noopener" style="color: #a78bfa; text-decoration: underline; font-weight: 600;">National Disability Insurance Scheme (NDIS)</a> is an Australian government initiative that provides support to people with permanent and significant disability. It helps participants achieve their goals and live more independently.
-                </p>
                 <p>
                     As an NDIS provider, we deliver programs designed to align with participants' goals while building long-term independence.
                 </p>
                 <p>
-                    From capacity-building and life skills coaching to educational therapy and community participation, we help individuals not only meet their NDIS objectives but <strong style="color: #fff; font-weight: 700;">thrive beyond them</strong>.
+                    From capacity-building and life skills coaching to educational therapy and community participation, we help individuals not only meet their NDIS objectives but <span class="highlight">thrive beyond them</span>.
                 </p>
             </div>
-        </div>
+        </section>
 
-        <div class="section" id="section5">
-            <div class="grid-bg"></div>
-            <div class="content">
+        <section id="why-us">
+            <div class="container">
                 <h2>Why We Exist</h2>
-                <p style="font-size: 1.5rem; color: #fff;">
+                <p class="lead">
                     Standardised systems leave too many behind.
                 </p>
                 <p>
@@ -698,229 +408,109 @@
                 <p>
                     Our work is guided by trauma-informed practice and a neurodiverse-affirming philosophy. By partnering with families, caregivers, and support networks, we ensure that learning and care environments are safe, adaptable, and grounded in respect for each person's lived experience.
                 </p>
-                <p style="font-size: 1.4rem; color: #fff; margin-top: 30px;">
+                <p class="lead" style="margin-top: 2rem;">
                     We are committed to creating environments that foster belonging, agency, and growth.
                 </p>
             </div>
-        </div>
+        </section>
 
-        <div class="section" id="section6">
-            <div class="grid-bg"></div>
-            <div class="content">
-                <h2>Book an Appointment</h2>
-                <p>Schedule a consultation to discuss how we can support your learning journey.</p>
+        <section id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <p style="margin-bottom: 2.5rem;">
+                    Ready to start your journey with 2140 Education? We'd love to hear from you.
+                </p>
                 
-                <div class="booking-container">
-                    <div class="booking-frame-wrapper">
-                        <iframe 
-                            class="booking-frame"
-                            src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0QlyWbVmX87HHMmfpFrX-9K_0gOoeHuCxbjtoPaXZhjF6BVEX9zbLKtBvRDxRfHF6m99ob9wfN" 
-                            frameborder="0"
-                            allow="fullscreen">
-                        </iframe>
-                        <div class="booking-fallback">
-                            <p>
-                                Having trouble? 
-                                <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0QlyWbVmX87HHMmfpFrX-9K_0gOoeHuCxbjtoPaXZhjF6BVEX9zbLKtBvRDxRfHF6m99ob9wfN" 
-                                   target="_blank">
-                                   Open calendar in new window →
-                                </a>
-                            </p>
+                <div class="contact-wrapper">
+                    <form class="contact-form" action="https://formsubmit.co/2140accounts@proton.me" method="POST">
+                        <!-- Honeypot for spam protection -->
+                        <input type="text" name="_honey" style="display:none">
+                        
+                        <!-- Disable captcha -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <!-- Success page redirect (optional) -->
+                        <input type="hidden" name="_next" value="https://2140education.org">
+                        
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
-                    </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
                 </div>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <div class="section" id="section7">
-            <div class="grid-bg"></div>
-            <div class="content">
-                <h2>Get in Touch</h2>
-                <p>Ready to start your journey with 2140 Education? We'd love to hear from you.</p>
-                
-                <form class="contact-form" action="https://formsubmit.co/2140accounts@proton.me" method="POST">
-                    <!-- Honeypot for spam protection -->
-                    <input type="text" name="_honey" style="display:none">
-                    
-                    <!-- Disable captcha -->
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <!-- Success page redirect (optional) -->
-                    <input type="hidden" name="_next" value="https://2140education.org">
-                    
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener">GNU General Public License v3.0</a>
+        <span class="footer-sep">•</span>
+        <span>ABN 67 684 858 857</span>
+        <span class="footer-sep">•</span>
+        <span>ACN: 684 858 857</span>
+    </footer>
 
     <script>
-        const wrapper = document.getElementById('wrapper');
-        const sections = document.querySelectorAll('.section');
-        const navDots = document.getElementById('navDots');
-        let currentSection = 0;
-        let isScrolling = false;
-        let startX = 0;
-        let scrollLeft = 0;
-        let isDragging = false;
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-        // Create navigation dots
-        sections.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.className = 'dot' + (index === 0 ? ' active' : '');
-            dot.addEventListener('click', () => scrollToSection(index));
-            navDots.appendChild(dot);
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
-        function scrollToSection(index) {
-            if (index < 0 || index >= sections.length) return;
-            currentSection = index;
-            wrapper.style.transform = `translateX(-${currentSection * 100}vw)`;
-            updateDots();
-        }
-
-        function updateDots() {
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSection);
-            });
-            // Update header nav links
-            document.querySelectorAll('.header-nav a').forEach((link, index) => {
-                link.classList.toggle('active', index === currentSection);
-            });
-        }
-
-        // Header navigation clicks
-        document.querySelectorAll('.header-nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const section = parseInt(link.getAttribute('data-section'));
-                scrollToSection(section);
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
             });
         });
 
-        // Wheel scroll (desktop only)
-        window.addEventListener('wheel', (e) => {
-            if (window.innerWidth <= 768) return; // Disable on mobile
-            if (isScrolling) return;
-            
-            if (e.deltaY > 0 || e.deltaX > 0) {
-                // Scroll right
-                if (currentSection < sections.length - 1) {
-                    isScrolling = true;
-                    currentSection++;
-                    scrollToSection(currentSection);
-                    setTimeout(() => isScrolling = false, 800);
+        // Active link highlighting using Intersection Observer
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -79% 0px', // Adjust trigger point
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    navItems.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
-            } else {
-                // Scroll left
-                if (currentSection > 0) {
-                    isScrolling = true;
-                    currentSection--;
-                    scrollToSection(currentSection);
-                    setTimeout(() => isScrolling = false, 800);
-                }
-            }
-        }, { passive: true });
+            });
+        }, observerOptions);
 
-        // Touch/mouse drag (desktop only)
-        wrapper.addEventListener('mousedown', (e) => {
-            if (window.innerWidth <= 768) return; // Disable on mobile
-            isDragging = true;
-            startX = e.pageX;
-            scrollLeft = currentSection * window.innerWidth;
+        sections.forEach(section => {
+            observer.observe(section);
         });
-
-        wrapper.addEventListener('touchstart', (e) => {
-            if (window.innerWidth <= 768) return; // Disable on mobile
-            isDragging = true;
-            startX = e.touches[0].pageX;
-            scrollLeft = currentSection * window.innerWidth;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging || window.innerWidth <= 768) return;
-            e.preventDefault();
-            const x = e.pageX;
-            const walk = (startX - x) * 2;
-            const newScroll = scrollLeft + walk;
-            const newSection = Math.round(newScroll / window.innerWidth);
-            if (newSection !== currentSection && newSection >= 0 && newSection < sections.length) {
-                currentSection = newSection;
-                updateDots();
-            }
-            wrapper.style.transform = `translateX(-${newScroll}px)`;
-        });
-
-        window.addEventListener('touchmove', (e) => {
-            if (!isDragging || window.innerWidth <= 768) return;
-            const x = e.touches[0].pageX;
-            const walk = (startX - x) * 2;
-            const newScroll = scrollLeft + walk;
-            const newSection = Math.round(newScroll / window.innerWidth);
-            if (newSection !== currentSection && newSection >= 0 && newSection < sections.length) {
-                currentSection = newSection;
-                updateDots();
-            }
-            wrapper.style.transform = `translateX(-${newScroll}px)`;
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                scrollToSection(currentSection);
-            }
-        });
-
-        window.addEventListener('touchend', () => {
-            if (isDragging) {
-                isDragging = false;
-                scrollToSection(currentSection);
-            }
-        });
-
-        // Keyboard navigation (desktop only)
-        window.addEventListener('keydown', (e) => {
-            if (window.innerWidth <= 768) return; // Disable on mobile
-            if (e.key === 'ArrowRight' && currentSection < sections.length - 1) {
-                currentSection++;
-                scrollToSection(currentSection);
-            } else if (e.key === 'ArrowLeft' && currentSection > 0) {
-                currentSection--;
-                scrollToSection(currentSection);
-            }
-        });
-
-        // Hide scroll hint after first interaction
-        let hintHidden = false;
-        function hideHint() {
-            if (!hintHidden) {
-                document.querySelector('.scroll-hint').style.opacity = '0';
-                hintHidden = true;
-            }
-        }
-        window.addEventListener('wheel', hideHint, { once: true });
-        window.addEventListener('mousedown', hideHint, { once: true });
-        window.addEventListener('touchstart', hideHint, { once: true });
     </script>
 </body>
 </html>
