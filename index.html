@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2140 Education</title>
-    <link rel="icon" type="image/png" href="https://github.com/2140education/2140education.github.io/blob/main/Logo.png?raw=true">
+    <link rel="icon" type="image/png" href="Logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #ffffff;
@@ -19,8 +21,18 @@
             --section-bg: #f9fafb;
         }
 
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --border: #1e293b;
+            --section-bg: #0b1120;
+        }
+
         @media (prefers-color-scheme: dark) {
-            :root {
+            :root:not([data-theme="light"]) {
                 --bg-color: #0f172a;
                 --text-color: #f8fafc;
                 --text-muted: #94a3b8;
@@ -105,6 +117,29 @@
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--border);
         }
 
         /* Mobile Menu Button */
@@ -196,7 +231,7 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 3rem;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -277,7 +312,7 @@
         footer a:hover {
             text-decoration: underline;
         }
-        
+
         .footer-sep {
             opacity: 0.4;
         }
@@ -305,6 +340,10 @@
                 display: block;
             }
 
+            .nav-right {
+                gap: 1rem;
+            }
+
             section {
                 padding: 4rem 1.5rem;
             }
@@ -312,32 +351,58 @@
             .contact-wrapper {
                 padding: 1.5rem;
             }
-            
+
             #home {
                 padding-top: 80px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <header>
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="https://github.com/2140education/2140education.github.io/blob/main/Logo.png?raw=true" alt="2140 Education Logo">
+                <img src="Logo.png" alt="2140 Education Logo">
                 2140 Education
             </a>
-            <button class="menu-toggle" aria-label="Toggle Navigation">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            </button>
-            <nav class="nav-links">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#mission" class="nav-link">Mission & Vision</a>
-                <a href="#homeschooling" class="nav-link">Homeschooling</a>
-                <a href="#ndis" class="nav-link">NDIS</a>
-                <a href="#why-us" class="nav-link">Why Us</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
+            <div class="nav-right">
+                <nav class="nav-links">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#mission" class="nav-link">Mission & Vision</a>
+                    <a href="#homeschooling" class="nav-link">Homeschooling</a>
+                    <a href="#ndis" class="nav-link">NDIS</a>
+                    <a href="#why-us" class="nav-link">Why Us</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -348,8 +413,14 @@
                 <p class="tagline">
                     Building the future of learning. One individual at a time.
                 </p>
-                <a href="#mission" style="display:inline-block; margin-top: 2rem; color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--text-color)'" onmouseout="this.style.color='var(--text-muted)'">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                <a href="#mission"
+                    style="display:inline-block; margin-top: 2rem; color: var(--text-muted); transition: color 0.3s;"
+                    onmouseover="this.style.color='var(--text-color)'"
+                    onmouseout="this.style.color='var(--text-muted)'">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5v14M19 12l-7 7-7-7" />
+                    </svg>
                 </a>
             </div>
         </section>
@@ -358,16 +429,24 @@
             <div class="container">
                 <h2>Mission & Vision</h2>
                 <p>
-                    At 2140 Education Pty Ltd, our mission is to provide <span class="highlight">inclusive, individualised, and empowering</span> education and support services that enrich the lives of learners and individuals living with disability.
+                    At 2140 Education Pty Ltd, our mission is to provide <span class="highlight">inclusive,
+                        individualised, and empowering</span> education and support services that enrich the lives of
+                    learners and individuals living with disability.
                 </p>
                 <p>
-                    We believe everyone, regardless of background, ability, or circumstance, deserves access to quality education and holistic care.
+                    We believe everyone, regardless of background, ability, or circumstance, deserves access to quality
+                    education and holistic care.
                 </p>
                 <p style="margin-top: 2rem;">
-                    The name <span class="highlight">2140</span> reflects our long-term vision: a future where all individuals, gifted learners, those with additional needs, and people with complex requirements, are supported to live purposeful, connected lives.
+                    The name <span class="highlight">2140</span> reflects our long-term vision: a future where all
+                    individuals, gifted learners, those with additional needs, and people with complex requirements, are
+                    supported to live purposeful, connected lives.
                 </p>
                 <p>
-                    We reimagine learning and support through <span class="highlight">inclusive, trauma-informed, and neurodiverse-affirming</span> pathways that honour each individual's strengths and goals. From homeschooling and NDIS services to mentoring, life skills, therapy, and financial literacy, we empower people of all abilities to grow with purpose, autonomy, and connection.
+                    We reimagine learning and support through <span class="highlight">inclusive, trauma-informed, and
+                        neurodiverse-affirming</span> pathways that honour each individual's strengths and goals. From
+                    homeschooling and NDIS services to mentoring, life skills, therapy, and financial literacy, we
+                    empower people of all abilities to grow with purpose, autonomy, and connection.
                 </p>
             </div>
         </section>
@@ -376,7 +455,9 @@
             <div class="container">
                 <h2>Homeschooling Services</h2>
                 <p>
-                    We specialise in supporting families who choose education outside of mainstream systems. Through academic mentoring, curriculum customisation, and capability-building for parents and carers, our homeschooling services offer flexible, learner-centred pathways.
+                    We specialise in supporting families who choose education outside of mainstream systems. Through
+                    academic mentoring, curriculum customisation, and capability-building for parents and carers, our
+                    homeschooling services offer flexible, learner-centred pathways.
                 </p>
                 <p class="highlight lead" style="margin-top: 2rem;">
                     We put each student's strengths and needs at the centre.
@@ -388,10 +469,13 @@
             <div class="container">
                 <h2>NDIS Support</h2>
                 <p>
-                    As an NDIS provider, we deliver programs designed to align with participants' goals while building long-term independence.
+                    As an NDIS provider, we deliver programs designed to align with participants' goals while building
+                    long-term independence.
                 </p>
                 <p>
-                    From capacity-building and life skills coaching to educational therapy and community participation, we help individuals not only meet their NDIS objectives but <span class="highlight">thrive beyond them</span>.
+                    From capacity-building and life skills coaching to educational therapy and community participation,
+                    we help individuals not only meet their NDIS objectives but <span class="highlight">thrive beyond
+                        them</span>.
                 </p>
             </div>
         </section>
@@ -403,10 +487,13 @@
                     Standardised systems leave too many behind.
                 </p>
                 <p>
-                    At 2140 Education, we create space for the possible—designing education and support that adapts to the individual, rather than forcing individuals to adapt to the system.
+                    At 2140 Education, we create space for the possible—designing education and support that adapts to
+                    the individual, rather than forcing individuals to adapt to the system.
                 </p>
                 <p>
-                    Our work is guided by trauma-informed practice and a neurodiverse-affirming philosophy. By partnering with families, caregivers, and support networks, we ensure that learning and care environments are safe, adaptable, and grounded in respect for each person's lived experience.
+                    Our work is guided by trauma-informed practice and a neurodiverse-affirming philosophy. By
+                    partnering with families, caregivers, and support networks, we ensure that learning and care
+                    environments are safe, adaptable, and grounded in respect for each person's lived experience.
                 </p>
                 <p class="lead" style="margin-top: 2rem;">
                     We are committed to creating environments that foster belonging, agency, and growth.
@@ -420,38 +507,38 @@
                 <p style="margin-bottom: 2.5rem;">
                     Ready to start your journey with 2140 Education? We'd love to hear from you.
                 </p>
-                
+
                 <div class="contact-wrapper">
                     <form class="contact-form" action="https://formsubmit.co/2140accounts@proton.me" method="POST">
                         <!-- Honeypot for spam protection -->
                         <input type="text" name="_honey" style="display:none">
-                        
+
                         <!-- Disable captcha -->
                         <input type="hidden" name="_captcha" value="false">
-                        
+
                         <!-- Success page redirect (optional) -->
                         <input type="hidden" name="_next" value="https://2140education.org">
-                        
+
                         <div class="form-group">
                             <label for="name">Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="email">Email *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="phone">Phone</label>
                             <input type="tel" id="phone" name="phone">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        
+
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
@@ -460,7 +547,8 @@
     </main>
 
     <footer>
-        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener">GNU General Public License v3.0</a>
+        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener">GNU General Public License
+            v3.0</a>
         <span class="footer-sep">•</span>
         <span>ABN 67 684 858 857</span>
         <span class="footer-sep">•</span>
@@ -468,6 +556,38 @@
     </footer>
 
     <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            sunIcon.style.display = 'block';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            moonIcon.style.display = 'block';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            if (newTheme === 'dark') {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        });
+
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -497,7 +617,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
-                    
+
                     navItems.forEach(link => {
                         link.classList.remove('active');
                         if (link.getAttribute('href') === `#${id}`) {
@@ -513,4 +633,5 @@
         });
     </script>
 </body>
+
 </html>
